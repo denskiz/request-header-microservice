@@ -20,11 +20,13 @@ app.get('/api/whoami', (req, res) => {
   var browser = p.parseUA(userAgent).toString();
   var ip = req.ip;
   var trimIp = ip.replace(/[A-Za-z]|:/g, '');
+  var language = req.headers['accept-language'];
   res.json({
     'IP Address': trimIp,
     Language: lan[0],
     'Operating System': os,
-    Browser: browser
+    Browser: browser,
+    Other: req.headers['x-forwarded-for']
   });
 });
 
