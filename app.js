@@ -18,8 +18,10 @@ app.get('/api/whoami', (req, res) => {
   var lan = req.acceptsLanguages();
   var os = p.parseOS(userAgent).toString();
   var browser = p.parseUA(userAgent).toString();
+  var ip = req.ip;
+  var trimIp = ip.replace(/[A-Za-z]|:/g, '');
   res.json({
-    'IP Address': req.ip,
+    'IP Address': trimIp,
     Language: lan[0],
     'Operating System': os,
     Browser: browser
