@@ -21,8 +21,7 @@ app.get('/api/whoami', (req, res) => {
   res.json({
     'IP Address': ip.address(),
     Language: lan[0],
-    Software: soft,
-    Everything: 'dennis'
+    Software: soft
   });
 });
 
