@@ -3,11 +3,9 @@ const app = express();
 const port = process.env.PORT || 8080;
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const useragent = require('express-useragent');
-var ip = require('ip');
+const p = require('ua-parser');
 
 app.use(cors());
-app.use(useragent.express());
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
@@ -16,12 +14,15 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/whoami', (req, res) => {
-  var soft = `OS: ${req.useragent.os}, Browser: ${req.useragent.browser}`;
+  var userAgent = req.headers['user-agent'];
   var lan = req.acceptsLanguages();
+  var os = p.parseOS(userAgent).toString();
+  var browser = p.parseUA(userAgent).toString();
   res.json({
-    'IP Address': ip.address(),
+    'IP Address': req.ip,
     Language: lan[0],
-    Software: soft
+    'Operating System': os,
+    Browser: browser
   });
 });
 
