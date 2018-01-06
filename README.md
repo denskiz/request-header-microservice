@@ -1,4 +1,4 @@
 # request-header-microservice
-FreeCodeCamp Node Project - API endpoint which displays IP and OS of client
+FreeCodeCamp Node Project - API endpoint which displays IP address and OS of client
 
-https://request-header-de.herokuapp.com/
+https://request-header-microservice-de.appspot.com/
